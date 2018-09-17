@@ -1,0 +1,25 @@
+.column-title {
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* =================== */
+
+.table-header {
+    margin-bottom: 20px;
+}
+
+.table-header .ant-btn {
+    width: 120px;
+    height: 40px;
+}
+

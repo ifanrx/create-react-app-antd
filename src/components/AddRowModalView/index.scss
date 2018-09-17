@@ -1,0 +1,61 @@
+@import "~styles/base/mixins";
+
+.add-row-modal {
+  .ant-form-item {
+    margin-bottom: 5px;
+  }
+
+  .radio-button {
+    display: inline-block;
+    height: 20px;
+  }
+
+  .add-button {
+    width: 60%;
+  }
+
+  .add-select {
+    width: 60% !important;
+    margin-right: 8px !important;
+  }
+
+  .acl-title {
+    font-size: 14px;
+    color: #3F536E;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .acl-wrapper {
+    .ant-checkbox-group-item {
+      margin-right: 17px;
+    }
+  }
+
+  .fields-collect {
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  form {
+    .ant-calendar-picker {
+      width: 100% !important;
+    }
+  }
+
+  .ant-input {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .ant-form-item-control {
+    line-height: 40px;
+    margin-bottom: 15px;
+
+    .ant-btn {
+      height: 40px;
+      font-size: 14px;
+    }
+  }
+}

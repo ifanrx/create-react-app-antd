@@ -1,0 +1,11 @@
+.schema-list {
+
+}
+
+.schema-list-item {
+    line-height: 30px;
+}
+
+.schema-list-item a {
+    display: block;
+}
