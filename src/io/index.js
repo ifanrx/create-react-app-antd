@@ -4,6 +4,8 @@ const client = axios.create({
   baseURL: 'https://cloud.minapp.com/userve/v1/',// user dash api 的请求地址
   withCredentials: true // 必须手动开启为 true，允许跨域请求发送身份凭证信息
 })
+let fileUploadClient = axios.create({})
+
 
 export default {
   schema: {
@@ -33,11 +35,18 @@ export default {
     },
   },
   file: {
-    upload() {
-
+    uploadFile(config, onUploadProgress) {
+      let formData = new FormData()
+      formData.append('file', config.file)
+      formData.append('policy', config.policy)
+      formData.append('authorization', config.authorization)
+      return fileUploadClient.post(config.uploadUrl, formData, {
+        'headers': {'Content-Type': 'multipart/form-data'},
+        withCredentials: false,
+        onUploadProgress,
+      })
     },
-    getUploadConfig() {
-
-    }
-  }
+    getUploadFileConfig(data) {
+      return client.post('upload/', data)
+    }  }
 }

@@ -1,4 +1,4 @@
-// import FileUpload from '../SchemaFileUpload'
+import FileUpload from '../SchemaFileUpload'
 import constants from '../../constants'
 import React from 'react'
 import util from '../../utils'
@@ -141,33 +141,20 @@ export default class CreateFormitem extends React.Component {
       return (
         <DatePicker
           showTime
-          format={constants.DATE_FORMAT.ISO_8601}
+          format={constants.DATE_FORMAT.YMDHMS}
           disabled={isDisabled}
         />
       )
     }
 
     if (item.type === 'file') {
-      let {selectRows} = this.props
-      let record = selectRows ? selectRows[0] : null
-      let file = record ? record[item.name] : null
-      let defaultFileList = file ? [{
-        uid: file.id,
-        name: file.name,
-        status: 'done',
-        reponse: 'Server Error 500', // custom error message to show
-        url: file.path,
-      }] : []
-      return null
-      // return (
-      //   <FileUpload
-      //     item={item}
-      //     setField={this.setField}
-      //     defaultFileList={defaultFileList}
-      //     fileUploadPayload={file}
-      //     onRemove={isDisabled ? e => false : e => true}
-      //     disabled={isDisabled} />
-      // )
+      return (
+        <FileUpload
+          item={item}
+          setField={this.setField}
+          onRemove={isDisabled ? e => false : e => true}
+          disabled={isDisabled} />
+      )
     }
 
     let placeholder

@@ -1,5 +1,7 @@
 import React from 'react'
 import {Tooltip} from 'antd'
+import moment from 'moment'
+import constants from './constants'
 
 
 const SCHEMA_TYPE_WHITE_LIST = ['id', 'string', 'integer', 'number', 'file', 'boolean', 'date']
@@ -33,14 +35,26 @@ export default {
           description: field.description ? field.description : field.name,
           width: 200,
           render: text => {
-            if (Object.prototype.toString.call(text) === '[object Object]' ||
-              Object.prototype.toString.call(text) === '[object Undefined]' ||
-              Object.prototype.toString.call(text) === '[object Null]') return
+            let content = ''
 
-            return <Tooltip placement='topLeft' title={text.toString()}>
+            if (field.name === 'created_at' || field.name === 'updated_at') {
+              content = moment.unix(text).format(constants.DATE_FORMAT.YMDHMS)
+            } else if (field.type === 'date') {
+              content = moment(text).format(constants.DATE_FORMAT.YMDHMS)
+            } else if (field.type === 'file') {
+              content = text ? text.path : ''
+            } else if (Object.prototype.toString.call(text) === '[object Object]' ||
+              Object.prototype.toString.call(text) === '[object Undefined]' ||
+              Object.prototype.toString.call(text) === '[object Null]') {
+              return ''
+            } else {
+              content = text.toString()
+            }
+
+            return <Tooltip placement='topLeft' title={content}>
               <div>
                 <TableCell>
-                  {text.toString()}
+                  {content}
                 </TableCell>
               </div>
             </Tooltip>
@@ -49,21 +63,6 @@ export default {
         }
       }
     }
-
-    // for (let key in columnsAddedMap) {
-    //   columns.push({
-    //     title: key,
-    //     key: key,
-    //     dataIndex: key,
-    //     type: columnsAddedMap[key],
-    //     description: key,
-    //     width: 200,
-    //     render: text => {
-    //       if (!text || Object.prototype.toString.call(text) === '[object Object]') return
-    //       return <Tooltip placement='topLeft' title={text}>{text}</Tooltip>
-    //     },
-    //   })
-    // }
 
     return columns
   },
@@ -123,5 +122,22 @@ export default {
       }
     }
     return value
+  },
+  isEmptyObj(obj) {
+    let type = Object.prototype.toString.call(obj)
+
+    if (type !== '[object Object]') {
+      return false
+    }
+
+    for (var key in obj) {
+      return false
+    }
+
+    return true
+  },
+  checkUploadFileType(fileName, type) {
+    let blackListRegx = new RegExp(`\.(${type || 'htm|html|xhtml|asp|aspx|php|jsp'})$`, 'i')
+    return blackListRegx.test(fileName)
   }
 }

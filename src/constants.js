@@ -1,4 +1,5 @@
 export default {
+  MAX_UPLOAD_SIZE: 1073741824, // 1024M
   DATE_FORMAT: {
     ISO_8601: 'YYYY-MM-DDTHH:mm:ss.SSSSSSZ',
     YMDHMS: 'YYYY-MM-DD HH:mm:ss Z',
