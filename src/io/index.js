@@ -17,13 +17,13 @@ export default {
         }
       })
     },
-    create(newSchema) {
-      if (!newSchema.schema) {
-        newSchema.schema = {}
-      }
-      return client.post('schema/', newSchema, {
-        baseURL: '/dserve/v1.5/',
-      })
+
+    createRow(schemaID, data) {
+      return client.post(`table/${schemaID}/record/`, data)
+    },
+
+    updateRow(schemaID, recordID, data) {
+      return client.put(`table/${schemaID}/record/${recordID}/`, data)
     },
     query() {
 
@@ -31,9 +31,6 @@ export default {
     deleteRow(schemaID, id) {
       return client.delete(`table/${schemaID}/record/${id}/`)
     },
-    updateSchema(schemaID, params) {
-      return client.put(`schema/${schemaID}/`, params)
-    }
   },
   file: {
     upload() {

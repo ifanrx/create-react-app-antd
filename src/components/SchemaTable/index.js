@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Table, Popconfirm, Button} from 'antd';
+import {Table, Popconfirm, Button, Form, DatePicker} from 'antd';
 import API from '../../io'
 import utils from '../../utils'
+import AddRowModalView from '../AddRowModalView'
 import './index.css'
 
 const ButtonGroup = Button.Group;
@@ -10,6 +11,7 @@ export default class SchemaTable extends React.Component {
   constructor(props) {
     super(props);
     this.tableID = window._USER_CONFIG.TABLE_ID[0]
+    this.editModalUid = 1
     this.state = {
       schemaInfo: null,
       tableData: [],
@@ -26,6 +28,8 @@ export default class SchemaTable extends React.Component {
         showTotal: total => `共 ${total} 条数据`,
       },
       selectedRowKeys: [],
+      showEditRowModal: false,
+      currentEditingRow: null,
     }
 
   }
@@ -34,6 +38,21 @@ export default class SchemaTable extends React.Component {
     this.fetchData()
   }
 
+  handleAddRow = () => {
+    this.editModalUid++
+    this.setState({
+      showEditRowModal: true,
+      currentEditingRow: null,
+    })
+  }
+
+  handleEditRow(row) {
+    this.editModalUid++
+    this.setState({
+      showEditRowModal: true,
+      currentEditingRow: row,
+    })
+  }
 
   fetchTableData() {
     let {pagination} = this.state
@@ -82,7 +101,7 @@ export default class SchemaTable extends React.Component {
       render: (text, record) => (
         <div className='schema-table-td' style={{verticalAlign: 'bottom'}}>
           <a onClick={() => {
-            // this.toggleAddRowModalView(record)
+            this.handleEditRow(record)
           }}>编辑</a>
           {
             <Popconfirm
@@ -109,7 +128,7 @@ export default class SchemaTable extends React.Component {
   }
 
   render() {
-    let {pagination, schemaInfo, tableData, selectedRowKeys} = this.state
+    let {pagination, schemaInfo, tableData, selectedRowKeys, currentEditingRow, showEditRowModal} = this.state
     if (!schemaInfo) return null
 
     const rowSelection = {
@@ -123,7 +142,7 @@ export default class SchemaTable extends React.Component {
     return <div className='schema-table-panel'>
       <div className="table-header">
         <ButtonGroup>
-          <Button>添加行</Button>
+          <Button onClick={this.handleAddRow}>添加行</Button>
           <Button>查询</Button>
           {selectedRowKeys.length > 0 ?
             <Popconfirm
@@ -145,6 +164,18 @@ export default class SchemaTable extends React.Component {
         columns={this.columns}
         onChange={this.handleTableChange}
         dataSource={tableData} />
+      <AddRowModalView
+        tableID={this.tableID}
+        show={showEditRowModal}
+        key={this.editModalUid}
+        fields={this.columns.filter(v => v.key !== 'ifrx-operation')}
+        currentEditingRow={currentEditingRow}
+        onClose={() => {
+          this.fetchTableData()
+          this.setState({
+            showEditRowModal: false
+          })
+        }} />
     </div>
   }
 }
