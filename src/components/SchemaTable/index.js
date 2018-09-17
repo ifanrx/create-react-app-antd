@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import {Table, Popconfirm, Button, Form, DatePicker} from 'antd';
+import React from 'react'
+import {Table, Popconfirm, Button} from 'antd'
 import API from '../../io'
 import utils from '../../utils'
 import AddRowModalView from '../AddRowModalView'
+import SchemaDataFilterFormModal from '../SchemaDataFilterFormModal'
 import './index.css'
 
 const ButtonGroup = Button.Group;
@@ -30,6 +31,8 @@ export default class SchemaTable extends React.Component {
       selectedRowKeys: [],
       showEditRowModal: false,
       currentEditingRow: null,
+      query: {},
+      showQueryModal: false
     }
 
   }
@@ -55,8 +58,9 @@ export default class SchemaTable extends React.Component {
   }
 
   fetchTableData() {
-    let {pagination} = this.state
+    let {pagination, query} = this.state
     API.schema.getRecord(this.tableID, {
+      where: query,
       offset: (pagination.current - 1) * pagination.pageSize,
       limit: pagination.pageSize
     }).then(res => {
@@ -127,8 +131,19 @@ export default class SchemaTable extends React.Component {
     })
   }
 
+  handleApplyQuery = query => {
+    let p = {...this.state.pagination}
+    p.current = 1
+    this.setState({
+      pagination: p,
+      query
+    }, () => {
+      this.fetchTableData()
+    })
+  }
+
   render() {
-    let {pagination, schemaInfo, tableData, selectedRowKeys, currentEditingRow, showEditRowModal} = this.state
+    let {pagination, schemaInfo, tableData, selectedRowKeys, currentEditingRow, showEditRowModal, showQueryModal} = this.state
     if (!schemaInfo) return null
 
     const rowSelection = {
@@ -143,7 +158,11 @@ export default class SchemaTable extends React.Component {
       <div className="table-header">
         <ButtonGroup>
           <Button onClick={this.handleAddRow}>添加行</Button>
-          <Button>查询</Button>
+          <Button onClick={() => {
+            this.setState({
+              showQueryModal: true
+            })
+          }}>查询</Button>
           {selectedRowKeys.length > 0 ?
             <Popconfirm
               title={'确定删除所选的数据行吗?'}
@@ -164,6 +183,14 @@ export default class SchemaTable extends React.Component {
         columns={this.columns}
         onChange={this.handleTableChange}
         dataSource={tableData} />
+      <SchemaDataFilterFormModal
+        setQuery={this.handleApplyQuery}
+        onClose={() => {
+          this.setState({
+            showQueryModal: false
+          })
+        }}
+        show={showQueryModal} />
       <AddRowModalView
         tableID={this.tableID}
         show={showEditRowModal}

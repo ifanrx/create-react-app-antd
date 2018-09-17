@@ -12,10 +12,21 @@ export default {
     getSchema(id) {
       return client.get(`table/${id}/`)
     },
-    getRecord(id, {offset = 0, limit = 20}) {
+    getSchemaList() {
+      return client.get('table/', {
+        params: {
+          limit: 80,
+          offset: 0,
+        }
+      })
+    },
+    getRecord(id, {offset = 0, limit = 20, where}) {
       return client.get(`table/${id}/record/`, {
         params: {
-          offset, limit
+          where,
+          offset,
+          limit,
+          order_by: '-updated_at'
         }
       })
     },
@@ -48,5 +59,6 @@ export default {
     },
     getUploadFileConfig(data) {
       return client.post('upload/', data)
-    }  }
+    }
+  }
 }
