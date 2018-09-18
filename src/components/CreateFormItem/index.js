@@ -2,7 +2,7 @@ import FileUpload from '../SchemaFileUpload'
 import constants from '../../constants'
 import React from 'react'
 import util from '../../utils'
-import {Button, DatePicker, Form, Icon, Input, Select} from 'antd'
+import {DatePicker, Form, Input, Select} from 'antd'
 import cls from 'classnames'
 
 const FormItem = Form.Item
@@ -22,12 +22,12 @@ export default class CreateFormitem extends React.Component {
     return this.props.formItemLayout || {
       labelCol: {
         xs: {span: 24},
-        sm: {span: 4},
+        sm: {span: 4}
       },
       wrapperCol: {
         xs: {span: 24},
-        sm: {span: 20},
-      },
+        sm: {span: 20}
+      }
     }
   }
 
@@ -35,12 +35,12 @@ export default class CreateFormitem extends React.Component {
     return this.props.formItemLayoutWithOutLabel || {
       labelCol: {
         xs: {span: 24},
-        sm: {span: 0},
+        sm: {span: 0}
       },
       wrapperCol: {
         xs: {span: 24, offset: 0},
-        sm: {span: 20, offset: 4},
-      },
+        sm: {span: 20, offset: 4}
+      }
     }
   }
 
@@ -54,7 +54,7 @@ export default class CreateFormitem extends React.Component {
       integer: {pattern: /^(|-)\d+$/},
       number: {pattern: /^(|-)(\d+\.?\d+|\d+)$/},
       boolean: {pattern: /^(true|false)$/},
-      string: {type},
+      string: {type}
     }
     return {...fieldConfig[type], message: `格式不正确，需要 ${type} 类型`}
   }
@@ -168,7 +168,6 @@ export default class CreateFormitem extends React.Component {
     return <Input placeholder={placeholder} disabled={isDisabled} />
   }
 
-
   handleFileInput = (rule, value, callback) => {
     if (value) {
       if (value.file && value.file.name && util.checkUploadFileType(value.file.name)) {
@@ -187,8 +186,8 @@ export default class CreateFormitem extends React.Component {
   }
 
   render() {
-    const {fields, form, editType, className, arrayRequired} = this.props
-    const {getFieldValue, getFieldDecorator} = form
+    const {fields, form, editType, className} = this.props
+    const {getFieldDecorator} = form
     let formItemLayout = this.formItemLayout
 
     if (!fields || fields.length === 0) return null

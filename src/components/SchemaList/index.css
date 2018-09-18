@@ -1,9 +1,19 @@
-.schema-list {
-
+.schema-list-title {
+    padding-top: 40px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 40px;
 }
 
 .schema-list-item {
-    line-height: 30px;
+    line-height: 40px;
+    font-size: 16px;
+    padding-left: 15px;
+    border-left: 4px solid transparent;
+}
+
+.schema-list-item.active {
+    border-left: 4px solid #128BF8;
 }
 
 .schema-list-item a {

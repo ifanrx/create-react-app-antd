@@ -1,26 +1,22 @@
-// import ACLCheckboxGroup from '../ACLCheckboxGroup'
 import API from '../../io'
-import constants from '../../constants'
 import CreateFormItem from '../CreateFormItem'
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import util from '../../utils'
 import {Form, message, Modal} from 'antd'
-// import './index.scss'
 
 let isCreating = false
 let client = API.schema
-let DATE_FORMAT = constants.DATE_FORMAT
 
 class AddRowModalView extends React.Component {
   state = {
     aclPermission: {
       _read_perm: [],
-      _write_perm: [],
+      _write_perm: []
     },
     arrayRequired: false,
-    uuid: {},
+    uuid: {}
   }
 
   get editType() {
@@ -35,7 +31,6 @@ class AddRowModalView extends React.Component {
       this.setFieldsValue(this.props.currentEditingRow)
     }
   }
-
 
   /**
    * 隐藏当前 modal
@@ -126,7 +121,6 @@ class AddRowModalView extends React.Component {
     setFormDefaultValue(fields, form)
   }
 
-
   /**
    * 根据选择的数据行给表单域设置初始值
    * @param selectRow 选择的数据行
@@ -148,9 +142,7 @@ class AddRowModalView extends React.Component {
     const {
       form,
       fields,
-      show,
-      protectedFields,
-      isBuildInSchema,
+      show
     } = this.props
     const {getFieldsValue} = form
 
@@ -219,7 +211,7 @@ export function setFormDefaultValue(fields, form) {
  * @param fields 列数据
  */
 export function setFormFieldsValue(selectRow, form, fields) {
-  const {getFieldDecorator, setFieldsValue} = form
+  const {getFieldDecorator} = form
 
   Object.keys(selectRow).forEach(key => {
     if (key === 'created_at' || key === 'updated_at') {
@@ -311,7 +303,7 @@ AddRowModalView.propTypes = {
   fields: PropTypes.array,
   form: PropTypes.object,
   currentEditingRow: PropTypes.object,
-  tableID: PropTypes.number
+  tableID: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
 export default Form.create()(AddRowModalView)

@@ -1,11 +1,10 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'https://cloud.minapp.com/userve/v1/',// user dash api 的请求地址
+  baseURL: 'https://cloud.minapp.com/userve/v1/', // user dash api 的请求地址
   withCredentials: true // 必须手动开启为 true，允许跨域请求发送身份凭证信息
 })
 let fileUploadClient = axios.create({})
-
 
 export default {
   schema: {
@@ -16,7 +15,7 @@ export default {
       return client.get('table/', {
         params: {
           limit: 80,
-          offset: 0,
+          offset: 0
         }
       })
     },
@@ -43,7 +42,7 @@ export default {
     },
     deleteRow(schemaID, id) {
       return client.delete(`table/${schemaID}/record/${id}/`)
-    },
+    }
   },
   file: {
     uploadFile(config, onUploadProgress) {
@@ -54,7 +53,7 @@ export default {
       return fileUploadClient.post(config.uploadUrl, formData, {
         'headers': {'Content-Type': 'multipart/form-data'},
         withCredentials: false,
-        onUploadProgress,
+        onUploadProgress
       })
     },
     getUploadFileConfig(data) {

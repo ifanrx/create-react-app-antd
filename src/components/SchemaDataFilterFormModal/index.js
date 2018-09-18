@@ -1,6 +1,6 @@
 import React from 'react'
 import {Modal, Form, Input, DatePicker} from 'antd'
-import constants from "../../constants"
+import constants from '../../constants'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 
@@ -12,12 +12,12 @@ class SchemaDataFilterFormModal extends React.Component {
     return this.props.formItemLayout || {
       labelCol: {
         xs: {span: 24},
-        sm: {span: 4},
+        sm: {span: 4}
       },
       wrapperCol: {
         xs: {span: 24},
-        sm: {span: 20},
-      },
+        sm: {span: 20}
+      }
     }
   }
 
@@ -84,7 +84,7 @@ class SchemaDataFilterFormModal extends React.Component {
 SchemaDataFilterFormModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
-  setQuery: PropTypes.func,
+  setQuery: PropTypes.func
 }
 
 export default Form.create()(SchemaDataFilterFormModal)

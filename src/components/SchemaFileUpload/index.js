@@ -6,7 +6,7 @@ import {
   Button,
   Icon,
   Upload,
-  message,
+  message
 } from 'antd'
 
 const fileTypeInvalidTip = '文件类型不合法'
@@ -14,7 +14,7 @@ const fileSizeInvalid = '请选择小于 30M 的文件'
 
 export default class FileUpload extends React.Component {
   state = {
-    fileUploadPayload: {},
+    fileUploadPayload: {}
   }
 
   componentDidMount() {
@@ -26,8 +26,8 @@ export default class FileUpload extends React.Component {
         created_at: fileUploadPayload.created_at,
         mime_type: fileUploadPayload.mime_type,
         size: fileUploadPayload.size,
-        cdn_path: fileUploadPayload.cdn_path,
-      } : {},
+        cdn_path: fileUploadPayload.cdn_path
+      } : {}
     })
   }
 
@@ -38,7 +38,7 @@ export default class FileUpload extends React.Component {
       customRequest: this.beforeUpload,
       onRemove: e => {
         this.setState({
-          fileUploadPayload: {},
+          fileUploadPayload: {}
         })
         setField(null, item)
         return onRemove ? onRemove() : Promise.resolve(true)
@@ -48,8 +48,8 @@ export default class FileUpload extends React.Component {
         name: value.name,
         status: 'done',
         reponse: 'Server Error 500', // custom error message to show
-        url: value.cdn_path,
-      }] : [],
+        url: value.cdn_path
+      }] : []
     }
   }
 
@@ -74,20 +74,20 @@ export default class FileUpload extends React.Component {
     }
 
     API.file.getUploadFileConfig({
-      filename: file.name,
+      filename: file.name
     }).then(res => {
       let data = res.data
       let config = {
         file: file,
         policy: data.policy,
         authorization: data.authorization,
-        uploadUrl: data.upload_url,
+        uploadUrl: data.upload_url
       }
 
       let {fileUploadPayload} = this.state
       Object.assign(fileUploadPayload, {
         id: data.id,
-        name: file.name,
+        name: file.name
       })
 
       API.file.uploadFile(config, e => {
@@ -100,7 +100,7 @@ export default class FileUpload extends React.Component {
           created_at: data.time,
           mime_type: data.mimetype,
           size: data.file_size,
-          cdn_path: data.url,
+          cdn_path: data.url
         })
 
         this.props.setField(fileUploadPayload, this.props.item)

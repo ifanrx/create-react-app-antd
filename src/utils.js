@@ -3,7 +3,6 @@ import {Tooltip} from 'antd'
 import moment from 'moment'
 import constants from './constants'
 
-
 const SCHEMA_TYPE_WHITE_LIST = ['id', 'string', 'integer', 'number', 'file', 'boolean', 'date']
 
 class TableCell extends React.Component {
@@ -59,7 +58,7 @@ export default {
               </div>
             </Tooltip>
           },
-          origin: field,
+          origin: field
         }
       }
     }
@@ -96,7 +95,7 @@ export default {
     if (type) {
       if (value === '' && type !== 'geojson') return ''
       switch (type) {
-        /* eslint-disable */
+      /* eslint-disable */
         case 'boolean':
           return JSON.parse(value)
         case 'integer':

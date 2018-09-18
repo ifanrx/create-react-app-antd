@@ -5,13 +5,14 @@ import utils from '../../utils'
 import AddRowModalView from '../AddRowModalView'
 import SchemaDataFilterFormModal from '../SchemaDataFilterFormModal'
 import './index.css'
+import CommonContainer from '../CommonContainer'
 
-const ButtonGroup = Button.Group;
+const ButtonGroup = Button.Group
 
 export default class SchemaTable extends React.Component {
   constructor(props) {
-    super(props);
-    this.tableID = window._USER_CONFIG.TABLE_ID[0]
+    super(props)
+    this.tableID = window.ACTIVE_TABLE_ID
     this.editModalUid = 1
     this.state = {
       schemaInfo: null,
@@ -26,7 +27,7 @@ export default class SchemaTable extends React.Component {
         showSizeChanger: true,
         // 条数选择器选项
         pageSizeOptions: ['10', '20', '50', '100'],
-        showTotal: total => `共 ${total} 条数据`,
+        showTotal: total => `共 ${total} 条数据`
       },
       selectedRowKeys: [],
       showEditRowModal: false,
@@ -34,7 +35,6 @@ export default class SchemaTable extends React.Component {
       query: {},
       showQueryModal: false
     }
-
   }
 
   componentDidMount() {
@@ -45,7 +45,7 @@ export default class SchemaTable extends React.Component {
     this.editModalUid++
     this.setState({
       showEditRowModal: true,
-      currentEditingRow: null,
+      currentEditingRow: null
     })
   }
 
@@ -53,7 +53,7 @@ export default class SchemaTable extends React.Component {
     this.editModalUid++
     this.setState({
       showEditRowModal: true,
-      currentEditingRow: row,
+      currentEditingRow: row
     })
   }
 
@@ -118,7 +118,7 @@ export default class SchemaTable extends React.Component {
             </Popconfirm>
           }
         </div>
-      ),
+      )
     }
   }
 
@@ -143,7 +143,15 @@ export default class SchemaTable extends React.Component {
   }
 
   render() {
-    let {pagination, schemaInfo, tableData, selectedRowKeys, currentEditingRow, showEditRowModal, showQueryModal} = this.state
+    let {
+      pagination,
+      schemaInfo,
+      tableData,
+      selectedRowKeys,
+      currentEditingRow,
+      showEditRowModal,
+      showQueryModal
+    } = this.state
     if (!schemaInfo) return null
 
     const rowSelection = {
@@ -152,10 +160,10 @@ export default class SchemaTable extends React.Component {
           selectedRowKeys
         })
       }
-    };
+    }
 
-    return <div className='schema-table-panel'>
-      <div className="table-header">
+    return <CommonContainer className='schema-table-panel'>
+      <div className='table-header'>
         <ButtonGroup>
           <Button onClick={this.handleAddRow}>添加行</Button>
           <Button onClick={() => {
@@ -163,8 +171,8 @@ export default class SchemaTable extends React.Component {
               showQueryModal: true
             })
           }}>查询</Button>
-          {selectedRowKeys.length > 0 ?
-            <Popconfirm
+          {selectedRowKeys.length > 0
+            ? <Popconfirm
               title={'确定删除所选的数据行吗?'}
               onConfirm={() => {
                 this.deleteRow(selectedRowKeys)
@@ -203,6 +211,6 @@ export default class SchemaTable extends React.Component {
             showEditRowModal: false
           })
         }} />
-    </div>
+    </CommonContainer>
   }
 }
