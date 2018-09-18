@@ -5,9 +5,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = function override(config, env) {
   if (process.env.NODE_ENV_RELEASE === '1') {
     config.output.publicPath = 'https://dl.ifanr.cn/hydrogen/user-dash-static/'
-    config.output.filename = 'static/js/[name].js'
+    config.output.filename = '[name].js'
     let p = config.plugins.find(p => p instanceof ExtractTextPlugin)
-    p.filename = 'static/css/[name].css'
+    p.filename = '[name].css'
   }
 
   config = injectBabelPlugin(

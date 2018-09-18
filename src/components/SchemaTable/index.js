@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Popconfirm, Button, Spin} from 'antd'
+import {Table, Popconfirm, Button, Spin, message} from 'antd'
 import API from '../../io'
 import utils from '../../utils'
 import AddRowModalView from '../AddRowModalView'
@@ -123,6 +123,7 @@ export default class SchemaTable extends React.Component {
   }
 
   deleteRow(ids) {
+    if (Array.isArray(ids)) return message.error('暂不支持批量删除')
     API.schema.deleteRow(this.tableID, ids).then(res => {
       this.fetchTableData()
       this.setState({

@@ -130,6 +130,7 @@ export default class CreateFormitem extends React.Component {
     if (item.name === 'created_at' || item.name === 'updated_at') {
       return (
         <DatePicker
+          style={{width: '100%'}}
           showTime
           format={constants.DATE_FORMAT.YMDHMS}
           disabled={isDisabled}
@@ -140,6 +141,7 @@ export default class CreateFormitem extends React.Component {
     if (item.type === 'date') {
       return (
         <DatePicker
+          style={{width: '100%'}}
           showTime
           format={constants.DATE_FORMAT.YMDHMS}
           disabled={isDisabled}
