@@ -27,10 +27,6 @@ export default class CommonContainer extends React.Component {
     padding: '40px'
   }
 
-  getDefaultProps() {
-    return {style: {}, className: ''}
-  }
-
   render() {
     return (
       <div
@@ -39,5 +35,7 @@ export default class CommonContainer extends React.Component {
     )
   }
 }
+
+CommonContainer.defaultProps = {style: {}, className: ''}
 
 CommonContainer.CommonContainerDivider = CommonContainerDivider

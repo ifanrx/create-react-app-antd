@@ -9,7 +9,6 @@ export default {
     HMS: 'HH:mm:ss Z',
     UNIX_TIMESTAMP: 'X',
     HM: 'HH:mm Z',
-    MDHM: 'MM-DD HH:mm Z',
-    H: 'HH 时 Z'
+    MDHM: 'MM-DD HH:mm Z'
   }
 }

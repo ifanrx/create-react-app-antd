@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Popconfirm, Button} from 'antd'
+import {Table, Popconfirm, Button, Spin} from 'antd'
 import API from '../../io'
 import utils from '../../utils'
 import AddRowModalView from '../AddRowModalView'
@@ -152,7 +152,11 @@ export default class SchemaTable extends React.Component {
       showEditRowModal,
       showQueryModal
     } = this.state
-    if (!schemaInfo) return null
+    if (!schemaInfo) {
+      return <div>
+        <center><Spin size='large' /></center>
+      </div>
+    }
 
     const rowSelection = {
       onChange: selectedRowKeys => {
