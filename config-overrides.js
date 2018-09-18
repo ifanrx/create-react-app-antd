@@ -1,6 +1,8 @@
 const {injectBabelPlugin} = require('react-app-rewired')
 const rewireLess = require('react-app-rewire-less')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 module.exports = function override(config, env) {
   if (process.env.NODE_ENV_RELEASE === '1') {
@@ -8,6 +10,10 @@ module.exports = function override(config, env) {
     config.output.filename = '[name].js'
     let p = config.plugins.find(p => p instanceof ExtractTextPlugin)
     p.filename = '[name].css'
+  }
+  if (env === 'development') {
+    let p = config.plugins.find(p => p instanceof HtmlWebpackPlugin)
+    p.options.template = path.join(__dirname, 'public', 'index.dev.html')
   }
 
   config = injectBabelPlugin(
