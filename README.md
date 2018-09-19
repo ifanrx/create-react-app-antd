@@ -20,12 +20,21 @@
 
 ## 二次开发
 
-本项目是在 AntDesign 的[create-react-app-antd](https://github.com/ant-design/create-react-app-antd) 项目的基础上改进，并结合了知晓云的 [OPEN API](https://doc.minapp.com/open-api/) 进行开发的
+本项目是在 AntDesign 的 [create-react-app-antd](https://github.com/ant-design/create-react-app-antd) 项目基础上改进，并结合了知晓云的 [OPEN API](https://doc.minapp.com/open-api/) 进行开发
 
+### 预备知识
+在开发之前，建议你对以下罗列的几个知识点有所了解：
+
+- 基础的 HTML/CSS/JS 知识
+- React 前端框架
+- webpack 构建工具
+- antDesign UI
+
+### 项目目录结构
 src 目录结构如下
 ```text
 ├── App.css 
-├── App.js
+├── App.js                
 ├── components
 │   ├── AddRowModalView  // 添加/编辑行模态框
 │   ├── CommonContainer  // 样式组件
@@ -36,14 +45,15 @@ src 目录结构如下
 │   └── SchemaTable      // 表格组件
 ├── constants.js          // 常量配置
 ├── index.css
-├── index.js
+├── index.js            // 入口
 ├── io                  // 接口 API
 │   └── index.js
 ├── registerServiceWorker.js
 └── utils.js            // 工具函数
 
 ```
-
+## 待完善的功能
+### 数据格式
 目前数据表的展示和编辑仅支持以下数据格式
 - id
 - string
@@ -56,3 +66,6 @@ src 目录结构如下
 - array
 - object
 - geojson
+
+### 批量删除
+目前 OPEN API 暂不支持批量删除功能
