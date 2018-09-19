@@ -212,7 +212,7 @@ export default class CreateFormitem extends React.Component {
 
             return (
               <FormItem
-                label={formatLabel(item.label || item.name)}
+                label={formatLabel(item.description || item.name)}
                 key={item.name}
                 {...(item.formItemLayout || formItemLayout)}>
                 {getFieldDecorator(item.name, this.getValidateConfig(item))(
