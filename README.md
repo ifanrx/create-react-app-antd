@@ -7,10 +7,16 @@
 2. 替换原有的表数据
 ```javascript
   window._USER_CONFIG = {
-      TABLE_LIST: [{name: 'dev_team_test', id: 43488}, {name: 'test_user_dash', id: 52124}]
+      TABLE_LIST: [
+        {name: 'dev_team_test' /* 数据表名称 */, id: 43488 /* 数据表 id */}, 
+        {name: 'test_user_dash', id: 52124}]
     }
-    window.ACTIVE_TABLE_ID = window._USER_CONFIG.TABLE_LIST[0].id
 ```
+
+## 部署到运营后台
+1. 执行 `npm run build`
+2. 将 dist 目录压缩为 zip 包
+3. 在[知晓云运营后台](https://cloud.minapp.com/dashboard/#/app/user-dashboard/)部署代码
 
 ## 二次开发
 

@@ -5,7 +5,7 @@ const path = require('path')
 
 let asset = Object.keys(assetMap)
   .filter(v => !assetMap[v].match(/\.map$/))
-  .map(v => assetMap[v])
+  .map(v => assetMap[v]).concat(['index.ifanrx.html'])
 
 Promise.all(asset.map(v => upload(v))).then(res => {
   console.log('success', res)

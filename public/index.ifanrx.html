@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
-  <script src="https://cloud.minapp.com/custom-userdash/auth/<CLIENT_ID>/"></script>
-  <script>
+  <script id="client-id" src="https://cloud.minapp.com/custom-userdash/auth/<CLIENT_ID_PLACEHOLDER>/"></script>
+  <script id="table-list">
     window._USER_CONFIG = {
-      TABLE_LIST: []
+      TABLE_LIST: "<TABLE_LIST_PLACEHOLDER>"
     }
+  </script>
+  <script>
     window.ACTIVE_TABLE_ID = window._USER_CONFIG.TABLE_LIST[0].id
   </script>
+  <link href="https://dl.ifanr.cn/hydrogen/user-dash-static/main.css" rel="stylesheet">
+
   <!--
     manifest.json provides metadata used when your web app is added to the
     homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -43,5 +47,6 @@
   To begin the development, run `npm start` or `yarn start`.
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
+<script type="text/javascript" src="https://dl.ifanr.cn/hydrogen/user-dash-static/main.js"></script>
 </body>
 </html>
