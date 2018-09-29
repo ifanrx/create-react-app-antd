@@ -12,6 +12,8 @@ module.exports = function override(config, env) {
     p.filename = '[name].css'
     p = config.plugins.find(p => p instanceof HtmlWebpackPlugin)
     p.options.template = path.join(__dirname, 'public', 'index.ifanrx.html')
+  } else {
+    config.output.publicPath = ''
   }
 
   config = injectBabelPlugin(
