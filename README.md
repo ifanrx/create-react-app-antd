@@ -1,5 +1,11 @@
 # 自动生成运营后台
 
+知晓云支持开发者结合 User Dash API 按需编写一套独立的运营后台，并支持一键部署至知晓云服务器，用户可以通过生成的链接直接访问使用。
+
+- 该服务适用于需要独立管理后台的用户，比如你的运营同事，并非开发者，你也不会希望他直接操作数据表，此时你可以写一套简单的运营后台供运营同事使用。
+
+如果你的电脑没有 nodejs，请先[下载 nodejs](https://nodejs.org/en/download/) 并安装
+
 ## 本地调试
 修改 public/index.html:
 
@@ -14,9 +20,20 @@
 ```
 
 ## 部署到运营后台
-1. 执行 `npm run build`
-2. 将 dist 目录压缩为 zip 包
-3. 在[知晓云运营后台](https://cloud.minapp.com/dashboard/#/app/user-dashboard/)部署代码
+第一步：首先在此项目跟目录下执行 `npm run build`
+
+成功时如下图所示：
+
+![](/res/build-success.png)
+
+第二步：将 dist 目录压缩为 zip 包：
+
+![](/res/zip.png)
+
+第三步：在[知晓云运营后台](https://cloud.minapp.com/dashboard/#/app/user-dashboard/)部署代码
+
+![](/res/step-1.png)
+![](/res/step-2.png)
 
 ## 二次开发
 
@@ -69,3 +86,8 @@ src 目录结构如下
 
 ### 批量删除
 目前 OPEN API 暂不支持批量删除功能
+
+
+## 其他
+
+[一键部署运营后台示例（旧）](https://github.com/ifanrx/hydrogen-demo/blob/master/user-dash-demo/README.md)
