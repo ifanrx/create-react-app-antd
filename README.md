@@ -24,16 +24,20 @@
 
 成功时如下图所示：
 
-![](/res/build-success.png)
+![](res/build-success.png)
 
-第二步：将 dist 目录压缩为 zip 包：
+第二步：将 dist 目录中的文件压缩为 zip 包：
 
-![](/res/zip.png)
+![](res/zip.png)
 
 第三步：在[知晓云运营后台](https://cloud.minapp.com/dashboard/#/app/user-dashboard/)部署代码
 
-![](/res/step-1.png)
-![](/res/step-2.png)
+![](res/step-1.png)
+![](res/step-2.png)
+
+稍等一会，进入控制台，即可看到部署成功的运营后台
+![](res/success.png)
+
 
 ## 二次开发
 
