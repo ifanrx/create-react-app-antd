@@ -94,4 +94,4 @@ src 目录结构如下
 
 ## 其他
 
-[一键部署运营后台示例（旧）](https://github.com/ifanrx/hydrogen-demo/blob/master/user-dash-demo/README.md)
+[一键部署运营后台示例（旧）](https://github.com/ifanrx/hydrogen-demo/blob/master/user-dash-demo/)
