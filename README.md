@@ -75,18 +75,17 @@ src 目录结构如下
 ```
 ## 待完善的功能
 ### 数据格式
-目前数据表的展示和编辑仅支持以下数据格式
+目前数据表的展示和编辑支持以下数据格式
 - id
 - string
 - number
 - integer
 - file
 - data
-
-暂不支持以下数据格式
 - array
 - object
 - geojson
+
 
 ### 批量删除
 目前 OPEN API 暂不支持批量删除功能
