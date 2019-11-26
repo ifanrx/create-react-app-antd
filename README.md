@@ -10,7 +10,9 @@
 修改 public/index.html:
 
 1. 修改 TOCLFMHonESsHTsc 为你的 client id
-2. 替换原有的表数据
+2. 修改 NDKLal9998LDjk 为你的环境 ID，如果为生产环境，环境 ID 设为空或将 env_id=NDKLal9998LDjk 去掉，测试环境 ID 的获取需要在控制台切换到测试环境后，到设置页面获取
+![](res/env-id.png)
+3. 替换原有的表数据
 ```javascript
   window._USER_CONFIG = {
       TABLE_LIST: [
